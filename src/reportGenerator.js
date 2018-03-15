@@ -18,9 +18,12 @@ class ReportGenerator {
 	generate({ data, ignoreConsole }) {
 		const fileDestination = this.config.getOutputFilepath();
 		return this.getStylesheetContent()
-			.then(stylesheet => this.renderHtmlReport({
+		    	.then(stylesheet => utils.writeFile({
+                            filePath: `${fileDestination}/styles.css`,
+                            content: stylesheet,
+			}))
+			.then(() => this.renderHtmlReport({
 				data,
-				stylesheet,
 			}))
 			.then(xmlBuilderOutput => utils.writeFile({
 				filePath: fileDestination,
@@ -61,7 +64,7 @@ class ReportGenerator {
 	 * @param  {Object} data		The test result data
 	 * @return {xmlbuilder}
 	 */
-	renderHtmlReport({ data, stylesheet }) {
+	renderHtmlReport({ data }) {
 		return new Promise((resolve, reject) => {
 			// Make sure that test data was provided
 			if (!data) { return reject(new Error('Test data missing or malformed')); }
@@ -72,7 +75,6 @@ class ReportGenerator {
 			// Create an xmlbuilder object with HTML and Body tags
 			const htmlOutput = utils.createHtmlBase({
 				pageTitle,
-				stylesheet,
 			});
 
 			// HEADER

@@ -51,10 +51,11 @@ const createHtmlBase = ({ pageTitle, stylesheet }) => xmlbuilder.create({
 		head: {
 			meta: { '@charset': 'utf-8' },
 			title: { '#text': pageTitle },
-			style: { '@type': 'text/css', '#text': stylesheet },
+			link: { '@rel': 'assets', '@href': 'styles.css' },
 		},
 	},
 });
+
 
 module.exports = {
 	logMessage,

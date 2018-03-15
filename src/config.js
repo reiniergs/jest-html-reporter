@@ -32,7 +32,7 @@ const setup = () => {
  * @return {String}
  */
 const getOutputFilepath = () =>
-	process.env.JEST_HTML_REPORTER_OUTPUT_PATH || config.outputPath || path.join(process.cwd(), 'test-report.html');
+	process.env.JEST_HTML_REPORTER_OUTPUT_PATH || config.outputPath || path.join(process.cwd(), './jest-report');
 
 /**
  * Returns the configured name of theme to be used for styling the report

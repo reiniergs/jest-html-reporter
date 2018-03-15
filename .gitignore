@@ -1,3 +1,5 @@
+.idea
+*.iml
 coverage/
 npm-debug.log
 node_modules/
